@@ -58,18 +58,6 @@ function App() {
           books={ books.filter((book) => { return book.shelf === 'read' }) }
           onChangeCategory={ changeCategory }
         />
-
-        <div>
-          { books.map((book) => {
-            return (
-              <p key={ book.id}>
-                { book.id } <br />
-                { book.title } <br />
-                { book.shelf } <br /><br />
-              </p>
-            )
-          }) }
-        </div>
       </main>
     </div>
   );

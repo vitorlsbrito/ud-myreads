@@ -15,9 +15,9 @@ function BooksCategory(props) {
 
                   <i className='fa fa-bars'>
                     <select name='teste' onChange={ (e) => { props.onChangeCategory(book.id, e) } }>
-                        <option value='Reading'>Reading</option>
-                        <option value='Want To Read'>Want To Read</option>
-                        <option value='Read'>Read</option>
+                        <option value='currentlyReading'>Reading</option>
+                        <option value='wantToRead'>Want To Read</option>
+                        <option value='read'>Read</option>
                     </select>
                   </i>
                 </div>
