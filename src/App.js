@@ -5,6 +5,7 @@ import Profile from './components/Profile';
 import Dashboard from './components/Dashboard';
 
 import Home from './components/Home';
+import Search from './components/Search';
 
 import * as BooksAPI from './BooksAPI';
 
@@ -19,6 +20,21 @@ function App() {
     });
   }, []);
 
+  const addABook = (id, shelf) => {
+    let currentBooks = books.map((book) => { return book });
+
+    const bookAlreadyAdded = books.filter((book) => { return book.id === id });
+
+    if (bookAlreadyAdded.length === 0) {
+      BooksAPI.get(id).then((data) => {
+        data.shelf = shelf;
+        currentBooks.push(data);
+  
+        setBooks(currentBooks);
+      });
+    }
+  }
+
   const changeCategory = (id, shelf) => {
     BooksAPI.update(id, shelf).then((data) => {
       const updatedBooks = books.map((book) => {
@@ -32,6 +48,7 @@ function App() {
       });
   
       setBooks(updatedBooks);
+      console.log(updatedBooks);
     });
   }
 
@@ -48,9 +65,9 @@ function App() {
           <Home books={ books } changeCategoryFunction={ changeCategory } />
         </Route>
 
-        <Route path='/search' render={() => (
-          <h1>Search</h1>
-        )} />
+        <Route path='/search'>
+          <Search changeCategoryFunction={ addABook } />
+        </Route>
       </main>
     </>
   );

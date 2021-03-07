@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ProgressBar from './ProgressBar';
 
 function Dashboard(props) {
-    const books = props.books.length;
+    const books = props.books.filter((book) => { return book.shelf !== 'none' }).length;
     const read = props.books.filter((book) => { return book.shelf === 'read' }).length;
     const wanted = props.books.filter((book) => { return book.shelf === 'wantToRead' }).length;
     const reading = props.books.filter((book) => { return book.shelf === 'currentlyReading' }).length;

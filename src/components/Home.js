@@ -17,7 +17,7 @@ function Home(props) {
                                 key={ book.id }
                                 bookKey={ book.id }
                                 title={ book.title }
-                                cover={ book.imageLinks.smallThumbnail }
+                                cover={ book.imageLinks ? book.imageLinks.smallThumbnail : 'https://dummyimage.com/150x200/CCC/333.png' }
                                 shelf='wantToRead'
                                 category={ book.categories }
                                 changeCategoryFunction={ props.changeCategoryFunction }

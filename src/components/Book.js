@@ -8,6 +8,7 @@ function Book(props) {
 
                 <div className='fas fa-ellipsis-v'>
                     <select value={ props.shelf } onChange={ (e) => { props.changeCategoryFunction(props.bookKey, e.target.value) } }>
+                        <option value='none'>None</option>
                         <option value='wantToRead'>Want To Read</option>
                         <option value='currentlyReading'>Reading</option>
                         <option value='read'>Read</option>
