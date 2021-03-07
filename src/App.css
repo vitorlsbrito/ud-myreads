@@ -1,27 +1,42 @@
 * { padding: 0; margin: 0; outline: none; }
 
-html, body { min-height: 100vh!important; }
+html, body { background: #EEE; min-height: 100vh!important; }
 body { color: #333; font-family:'Open Sans', 'Segoe UI', Tahoma, Verdana, sans-serif; font-size:15px; display: flex; }
 
 div#root, div.wrapper { display: flex; flex: 1; }
 
-/* Aside */
-aside { background: #EEE; box-sizing: border-box; padding: 50px 30px; flex: 1; }
+div.progressbar { background: #EEE; border-radius: 5px; flex: 1; height: 5px; overflow: hidden; }
+div.progressbar div { height: 5px;}
 
-/* Main */
-main { background: #FFF; box-sizing: border-box; padding: 50px 75px; flex: 3; }
-main h1 { font-size: 35px; margin-bottom: 30px; }
+div.book { width: 180px; margin-right: 30px; margin-bottom: 30px; display: flex; flex-direction: column; }
+div.book div.book-background { background: rgba(255, 255, 255, 0.6); width: 100%; height: 200px; margin-bottom: 20px; border-radius: 10px; display: flex; justify-content: center; align-items: center; position: relative; }
+div.book div.book-background img { width: auto; height: 175px; }
+div.book div.book-background div.fas { background: #333; color: #FFF; width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: absolute; bottom: 20px; right: 20px; }
+div.book div.book-background select { background: #F00; width: 35px; height: 35px; position: absolute; top: 0; left: 0; opacity: 0; }
+div.book p { font-size: 14px; text-align: center; height: 40px; margin-bottom: 5px; display: flex; justify-content: center; align-items: center; }
+div.book span { color: #999; text-align: center; text-transform: uppercase; }
+div.book div.book-background:hover img { height: 190px; transition: all 0.3s; }
 
-/* Books Category */
-main div.booksCategory h3 { font-size: 18px; margin-bottom: 15px; }
-main div.booksCategory ul { width: 100%; list-style: none; display: flex; flex-wrap: wrap; }
-main div.booksCategory ul li { width: 165px; margin-right: 20px; margin-bottom: 20px; }
-main div.booksCategory ul li div.bookBackground { background: #EEE; width: 165px; height: 195px; margin-bottom: 10px; border-radius: 15px; display: flex; align-items: center; justify-content: center; position: relative; }
-main div.booksCategory ul li div.bookPhoto { width: auto; height: 125px; display: flex; align-items: center; justify-content: center; }
-main div.booksCategory ul li div.bookPhoto img { width: auto; height: 100%; border-radius: 10px; }
-main div.booksCategory ul li:hover div.bookPhoto { height: 145px; transition: all 0.2s; }
-main div.booksCategory ul li p.bookName { font-size: 15px; text-align: center; height: 40px; margin-bottom: 5px; display: flex; justify-content: center; align-items: center; }
-main div.booksCategory ul li p.bookCategory { color: #666; font-size: 13px; text-align: center; text-transform: uppercase; }
+aside { box-sizing: border-box; padding: 50px 30px; flex: 1; }
 
-main div.booksCategory ul li i.fa-bars { background: #333; color: #FFF; font-size: 15px; padding: 10px; border-radius: 50px; cursor: pointer; position: absolute; bottom: 10px; right: 10px; }
-main div.booksCategory ul li i.fa-bars select { background: #F00; width: 25px; height: 25px; position: absolute; top: 5px; left: 5px; opacity: 0; }
+aside div.profile { width: 100%; height: auto; margin-bottom: 50px; display: flex; align-items: center; }
+aside div.profile img { width: 95px; height: 95px; border-radius: 50%; margin-right: 25px; }
+aside div.profile p { font-size: 20px; font-weight: bold; }
+aside div.profile span { color: #999; font-size: 15px; }
+
+aside div.dashboard { background: #FFF; padding: 30px; border-radius: 15px; box-sizing: border-box; box-shadow: 2px 2px rgba(0, 0, 0, 0.2); }
+aside div.dashboard div.dashboard-header { margin-bottom: 30px; display: flex; align-items: center; }
+aside div.dashboard div.dashboard-header h3 { font-size: 25px; font-weight: bold; flex: 1; }
+aside div.dashboard div.dashboard-header a { color: #CCC; font-size: 25px; }
+
+aside div.dashboard div.dashboard-infos { margin-bottom: 20px; display: flex; align-items: center; }
+aside div.dashboard div.dashboard-indicator {  min-width: 50px; margin-right: 25px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+aside div.dashboard div.dashboard-indicator p { font-size: 35px; font-weight: bold; text-align: center; }
+aside div.dashboard div.dashboard-indicator span { font-size: 12px; text-align: center;}
+
+main { padding: 50px 30px; flex: 3; }
+main h1 { margin: 25px 0 75px; }
+
+main div.bookShelf { display: flex; flex-direction: column; margin-bottom: 50px; }
+main div.bookShelf h3 { font-size: 25px; margin-bottom: 20px; }
+main div.bookShelf div.books { display: flex; flex-wrap: wrap; }

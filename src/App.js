@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
-import BooksCategory from './components/BooksCategory';
+import { Route } from 'react-router-dom';
+
+import Profile from './components/Profile';
+import Dashboard from './components/Dashboard';
+
+import Home from './components/Home';
 
 import * as BooksAPI from './BooksAPI';
 
@@ -14,52 +19,40 @@ function App() {
     });
   }, []);
 
-  const changeCategory = (id, e) => {
-    BooksAPI.update(id, e.target.value).then((data) => {
+  const changeCategory = (id, shelf) => {
+    BooksAPI.update(id, shelf).then((data) => {
       const updatedBooks = books.map((book) => {
         var temp = Object.assign({}, book);
   
         if (temp.id === id) {
-          temp.shelf = e.target.value;
+          temp.shelf = shelf;
         }
   
         return temp;
       });
   
       setBooks(updatedBooks);
-
-      console.log(books);
     });
   }
 
   return (
-    <div className='wrapper'>
+    <>
       <aside>
-        Aside
+        <Profile name='Taylor Johanson' level='Beginner' />
+
+        <Dashboard books={ books } />
       </aside>
 
       <main>
-        <h1>Explore</h1>
+        <Route exact path='/'>
+          <Home books={ books } changeCategoryFunction={ changeCategory } />
+        </Route>
 
-        <BooksCategory
-          name='Readings'
-          books={ books.filter((book) => { return book.shelf === 'currentlyReading' }) }
-          onChangeCategory={ changeCategory }
-        />
-
-        <BooksCategory
-          name='Wanted'
-          books={ books.filter((book) => { return book.shelf === 'wantToRead' }) }
-          onChangeCategory={ changeCategory }
-        />
-
-        <BooksCategory
-          name='Read'
-          books={ books.filter((book) => { return book.shelf === 'read' }) }
-          onChangeCategory={ changeCategory }
-        />
+        <Route path='/search' render={() => (
+          <h1>Search</h1>
+        )} />
       </main>
-    </div>
+    </>
   );
 }
 
